@@ -9,6 +9,8 @@ public class AppUser
     public string HashedPassword { get; set; } = String.Empty;
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public UserRole Role { get; set; } = UserRole.Customer;
+
+    public Cart Cart { get; set; }
     public ICollection<Order> Orders { get; set; }
 }
 
