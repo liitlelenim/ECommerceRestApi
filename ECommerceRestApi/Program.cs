@@ -1,9 +1,13 @@
 using ECommerceRestApi.DAL;
+using ECommerceRestApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("testDatabase"));
+
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
