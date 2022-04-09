@@ -1,4 +1,3 @@
-using System.Security.Cryptography.Xml;
 using System.Text;
 using ECommerceRestApi.DAL;
 using ECommerceRestApi.Repositories;
@@ -15,6 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDataba
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -27,7 +28,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "ECommerceRestApi", Version = "v1" });
     var filePath = Path.Combine(AppContext.BaseDirectory, "ECommerceRestApi.xml");
     c.IncludeXmlComments(filePath, includeControllerXmlComments: true);
@@ -53,16 +53,16 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-    app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
-    app.UseAuthorization();
+app.UseAuthorization();
 
-    app.MapControllers();
+app.MapControllers();
 
-    app.Run();
+app.Run();
