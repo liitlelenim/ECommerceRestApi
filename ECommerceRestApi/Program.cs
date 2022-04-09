@@ -27,7 +27,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "ECommerceRestApi", Version = "v1" });
+    var filePath = Path.Combine(AppContext.BaseDirectory, "ECommerceRestApi.xml");
+    c.IncludeXmlComments(filePath, includeControllerXmlComments: true);
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
