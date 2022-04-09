@@ -10,7 +10,6 @@ public class AppUser
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public UserRole Role { get; set; } = UserRole.Customer;
 
-    public Cart Cart { get; set; }  = null!;
     public ICollection<Order> Orders { get; set; } = null!;
 }
 
