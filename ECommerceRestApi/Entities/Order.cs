@@ -9,6 +9,6 @@ public class Order
     public decimal FinalPrice { get; set; }
     public DateTime Timestamp { get; set; } = DateTime.Now;
 
-    public ICollection<CartItem> OrderedItems { get; set; } = null!;
+    public IEnumerable<CartItem> OrderedItems { get; set; } = null!;
     public AppUser Customer { get; set; } = null!;
 }

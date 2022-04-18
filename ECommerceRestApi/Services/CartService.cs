@@ -1,5 +1,6 @@
 using ECommerceRestApi.DTO;
 using ECommerceRestApi.DTO.CartItem;
+using ECommerceRestApi.DTO.Order;
 using ECommerceRestApi.Entities;
 using ECommerceRestApi.Repositories;
 
@@ -83,11 +84,6 @@ public class CartService : ICartService
 
         await _cartRepository.SaveAsync();
     }
-
-    public Task MakeOrder(string username)
-    {
-        throw new NotImplementedException();
-    }
 }
 
 public interface ICartService
@@ -95,5 +91,4 @@ public interface ICartService
     public Task<IEnumerable<GetCartItemDto>> GetCartItems(string username);
     public Task RemoveItemFromCart(string username, string productUri, int quantityToRemove);
     public Task AddItemToCart(string username, string productUri, int productQuantity);
-    public Task MakeOrder(string username);
 }
